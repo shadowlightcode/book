@@ -11,8 +11,9 @@ test('', async({page}) => {
      await page.waitForURL('**/books/psychology_26/index.html', {waitUntil: 'domcontentloaded'});
 
      const psychologyPage = new PsychologyPage(page);
+  
 
-     
+
 
 
 
