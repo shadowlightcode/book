@@ -1,23 +1,20 @@
 
-import {type Page, type Locator} from '@playwright/test';
+import {type Page} from '@playwright/test';
 
 export default class BasePage {
-
+    readonly url: string = 'https://books.toscrape.com/index.html';
     readonly page: Page;
-    readonly category: Locator;
-    readonly psychology: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.psychology = this.page.locator('[href*="/books/psychology_26"]');
     }
 
+    async gotoPage() {
+        await this.page.goto(this.url);
+    }
 
-    // async navigateByCategory() {
-       
-    // // }
-
-    async navigateToPsychology() {
-        await this.psychology.click();
+    async navigateToCategory(category: string) {
+        let categoryLink = this.page.getByRole('link', {name: category, exact: true});
+        await categoryLink.click();
     }
 }
